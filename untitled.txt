@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site de Filmes</title>
+    <style>
+        /* Aqui fica o visual do site (CSS) */
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #E50914; /* Vermelho estilo Netflix */
+        }
+        .banner {
+            background-color: #222;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 3px solid #E50914;
+        }
+        .catalogo {
+            padding: 20px;
+        }
+        .grade-filmes {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; /* Permite arrastar pro lado no celular */
+            padding-bottom: 10px;
+        }
+        .filme {
+            background-color: #333;
+            min-width: 120px;
+            height: 180px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topo do site -->
+    <header>FLIX PRIME</header>
+
+    <!-- Filme em Destaque -->
+    <div class="banner">
+        <div>
+            <strong>Filme em Destaque:</strong><br>
+            Aventuras na Amazônia
+        </div>
+    </div>
+
+    <!-- Catálogo de Filmes -->
+    <div class="catalogo">
+        <h3>Adicionados Recentemente</h3>
+        <div class="grade-filmes">
+            <div class="filme">Filme 1</div>
+            <div class="filme">Filme 2</div>
+            <div class="filme">Filme 3</div>
+            <div class="filme">Filme 4</div>
+        </div>
+    </div>
+
+</body>
+</html>

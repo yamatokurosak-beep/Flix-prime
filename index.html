@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+      <!-- Links para o Carrossel funcionar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site de Filmes</title>
+    <style>
+        /* Aqui fica o visual do site (CSS) */
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #E50914; /* Vermelho estilo Netflix */
+        }
+        .banner {
+            background-color: #222;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 3px solid #E50914;
+        }
+        .catalogo {
+            padding: 20px;
+        }
+        .grade-filmes {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; /* Permite arrastar pro lado no celular */
+            padding-bottom: 10px;
+        }
+        .filme {
+            background-color: #333;
+            width: 120px;
+            height: 180px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+        }
+        /* Tela de Bloqueio por Senha */
+#tela-senha {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #111;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+#tela-senha h2 {
+    color: #E50914; /* Vermelho do Flix Prime */
+    margin-bottom: 20px;
+}
+#tela-senha input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+#tela-senha button {
+    padding: 10px 20px;
+    background-color: #E50914;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+<!-- Tela de Login -->
+<div id="tela-senha">
+    <h2>FLIX PRIME</h2>
+    <p>Insira a senha para acessar o catálogo:</p>
+    <input type="password" id="senha-input" placeholder="Digite a senha...">
+    <button onclick="verificarSenha()">Entrar</button>
+</div>
+
+    <!-- Topo do site -->
+    <header>FLIX PRIME</header>
+        <!-- Barra de Pesquisa -->
+    <div class="container-busca" style="padding: 0 15px; margin-bottom: 15px; position: relative;">
+        <input type="text" id="campoBusca" placeholder="Pesquisar filmes..." style="width: 100%; padding: 12px 40px 12px 15px; background-color: #222; border: 1px solid #444; border-radius: 20px; color: white; font-size: 16px; outline: none;">
+        <span style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); color: #888; font-size: 18px;">🔍</span>
+    </div>
+
+
+    <!-- Filme em Destaque -->
+      <!-- Carrossel de Destaques -->
+    <div class="swiper meuCarrossel" style="width: 100%; max-height: 250px; border-radius: 8px; margin-bottom: 20px;">
+        <div class="swiper-wrapper">
+            
+            <!-- BANNER 1 -->
+            <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                <img src="o.jpg" alt="Destaque 1" style="width: 100%; height: auto; display: block; opacity: 0.7;">
+                <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 5px;">
+                    <strong style="color: #ff0000;">Filme em Destaque:</strong><br>
+                    <span style="font-size: 18px; font-weight: bold; color: white;">Oppenheimer</span>
+                </div>
+            </div>
+
+            <!-- BANNER 2 -->
+            <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                <img src="a.jpg" alt="Destaque 2" style="width: 100%; height: auto; display: block; opacity: 0.7;">
+                <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 5px;">
+                    <strong style="color: #ff0000;">Destaque da Semana:</strong><br>
+                    <span style="font-size: 18px; font-weight: bold; color: white;">Dunna</span>
+                </div>
+            </div>
+
+            <!-- BANNER 3 -->
+            <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                <img src="b.jpg" alt="Destaque 3" style="width: 100%; height: auto; display: block; opacity: 0.7;">
+                <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 5px;">
+                    <strong style="color: #ff0000;">Mais Assistido:</strong><br>
+                    <span style="font-size: 18px; font-weight: bold; color: white;">avatar a caminhos das aguas</span>
+                </div>
+            </div>
+
+        </div>
+        <!-- Pontinhos de paginação lá embaixo do banner -->
+        <div class="swiper-pagination"></div>
+                            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Catálogo de Filmes -->
+    <div class="catalogo">
+        <h3>Adicionados Recentemente</h3>
+        <div class="grade-filmes">
+        <div class="filme">
+            <a href="https://www3.dramasfree.com/pt/detail/movie/J2sAJIA2mSKJlrGN2XDFK-Predator-2" target="_blank">
+                <img src="3.jpg" alt="Capa" style="width:100%; height:100%; border-radius:8px;">
+            </a>
+              <!-- Nome escondido para a busca encontrar -->
+    <span style="display: none;">Predador 2</span>
+        </div>
+
+                    <div class="filme">
+            <a href="https://www3.dramasfree.com/pt/detail/movie/as55ZtKH1kM0MJ1hxvwPw-Toy-Story-5" target="_blank">
+                <img src="1.jpg" alt="Capa" style="width:100%; height:100%; border-radius:8px;">
+            </a>
+                <!-- Nome escondido para a busca encontrar -->
+    <span style="display: none;">Toy Story 5</span>
+        </div>
+
+                    <div class="filme">
+            <a href="https://ww1.123flmsfree.com/pt/detail/movie/rrIh30Gqtpxc0idS2NU3P-Robin-Hood" target="_blank">
+                <img src="2.jpg" alt="Capa" style="width:100%; height:100%; border-radius:8px;">
+            </a>
+            <!-- Nome escondido para a busca encontrar -->
+    <span style="display: none;">Robin hood</span>
+        </div>
+
+    </div>
+        <!-- SEÇÃO: DESENHOS -->
+    <div class="catalogo" style="margin-top: 20px;">
+        <h3>Desenhos Animados</h3>
+        <div class="grade-filmes">
+            
+            <!-- Desenho 1 -->
+            <div class="filme">
+                <a href="https://video.playspelis.com/pt/detail/movie/rSryatpbo9R5PqNTX1d4s-Tom-and-Jerrys-Giant-Adventure" target="_blank">
+                    <img src="tom.jpg" alt="Capa" style="width: 100%; height: 100%; border-radius:8px;">
+                </a>
+                <span style="display: none;">as aventuras de tom e jerry</span>
+            </div>
+
+            <!-- Desenho 2 -->
+            <div class="filme">
+                <a href="LINK_DO_DESENHO_2_AQUI" target="_blank">
+                    <img src="pi.jpg" alt="Capa" style="width: 100%; height: 100%; border-radius:8px;">
+                </a>
+                <span style="display: none;">Nome do Desenho 2</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SEÇÃO: ANIMES -->
+    <div class="catalogo" style="margin-top: 20px;">
+        <h3>Animes</h3>
+        <div class="grade-filmes">
+            
+            <!-- Anime 1 -->
+            <div class="filme">
+                <a href="LINK_DO_ANIME_1_AQUI" target="_blank">
+                    <img src="na.jpg" alt="Capa" style="width: 100%; height: 100%; border-radius:8px;">
+                </a>
+                <span style="display: none;">Nome do Anime 1</span>
+            </div>
+
+            <!-- Anime 2 -->
+            <div class="filme">
+                <a href="LINK_DO_ANIME_2_AQUI" target="_blank">
+                    <img src="hu.jpg" alt="Capa" style="width: 100%; height: 100%; border-radius:8px;">
+                </a>
+                <span style="display: none;">Nome do Anime 2</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script para fazer o carrossel passar sozinho -->
+    <script>
+        const swiper = new Swiper('.meuCarrossel', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+        <!-- Script para a Lupa Funcionar -->
+    <script>
+        const campoBusca = document.getElementById('campoBusca');
+        
+        campoBusca.addEventListener('input', () => {
+            const termoPesquisa = campoBusca.value.toLowerCase();
+            const filmes = document.querySelectorAll('.filme');
+            
+            filmes.forEach(filme => {
+                const nomeFilme = filme.textContent.toLowerCase();
+                if (nomeFilme.includes(termoPesquisa)) {
+                    filme.style.display = ''; 
+                } else {
+                    filme.style.display = 'none'; 
+                }
+            });
+        });
+    </script>
+<!-- Rodapé do Site -->
+<footer style="text-align: center; padding: 20px; color: #666; font-size: 14px; background-color: #111; margin-top: 40px; border-top: 1px solid #222;">
+    <p>© 2026 FLIX PRIME. Todos os direitos reservados.</p>
+    <p style="font-size: 12px; margin-top: 5px;">Desenvolvido com ❤️ direto no celular</p>
+</footer>
+<!-- Script de Segurança -->
+<script>
+    function verificarSenha() {
+        const senhaCorreta = "1234"; // 🔑 Mude aqui para a senha que você quiser!
+        const senhaDigitada = document.getElementById('senha-input').value;
+        
+        if (senhaDigitada === senhaCorreta) {
+            document.getElementById('tela-senha').style.display = 'none';
+        } else {
+            alert('Senha incorreta! Tente novamente.');
+        }
+    }
+</script>
+
+
+</body>
+
+</html>
